@@ -33,11 +33,14 @@ $ http://127.0.0.1:8085/WebTours
 Запуск в docker gitlab ci/cd для самостоятельной сборки образа
 ------
 	
-# использовать файл .gitlab-ci.yaml
-# Установить на виртуалку gitlab-runner и постоянный диск для конфигурации gitlab-runner-volume
-docker run --rm --name gitlab-runner -it -v gitlab-runner-volume:/etc/gitlab-runner -v /var/run/docker.sock:/var/run/docker.sock -d gitlab/gitlab-runner 
+Использовать файл .gitlab-ci.yaml
 
-# Далее использовать файл config.toml для настройки gitlab ci/cd
+Установить на виртуалку gitlab-runner и постоянный диск для конфигурации gitlab-runner-volume
+```
+docker run --rm --name gitlab-runner -it -v gitlab-runner-volume:/etc/gitlab-runner -v /var/run/docker.sock:/var/run/docker.sock -d gitlab/gitlab-runner 
+```
+
+Далее использовать файл config.toml для настройки gitlab ci/cd
 # config.toml
 
 ```
@@ -76,7 +79,7 @@ shutdown_timeout = 0
     disable_cache = false
 ```
 
-# Использовать в gitlab файл .gitlab-ci.yaml
+Использовать в gitlab файл .gitlab-ci.yaml
 
 ```
 stages:
