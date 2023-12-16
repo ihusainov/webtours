@@ -753,9 +753,9 @@ volumes: []
 Далее выполнить команду
 
 ```
-helm upgrade --install runner gitlab/gitlab-runner \
-    --set gitlabUrl="https://gitlab.pflb.ru"
-    --set runnerRegistrationToken="YOUR GITLAB TOKEN"
-    --set rbac.create=true,runners.privileged=true
+helm install --namespace default gitlab-runner -f values.yaml gitlab/gitlab-runner
+
+# Если внести изменения в файл values.yaml то потом применить изменения
+helm upgrade --namespace default gitlab-runner -f values.yaml gitlab/gitlab-runner
 ```
 
