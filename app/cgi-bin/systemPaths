@@ -1,0 +1,10 @@
+
+#
+# Paths used by the current setup.
+#
+
+$pageBase = "/WebTours";
+$imageBase = "/WebTours/images";
+$scriptBase = "/cgi-bin";
+
+
