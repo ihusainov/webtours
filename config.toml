@@ -1,0 +1,46 @@
+concurrent = 1
+check_interval = 0
+shutdown_timeout = 0
+
+[session_server]
+  session_timeout = 1800
+
+[[runners]]
+  name = "docker-runner"
+  url = "https://gitlab.pflb.ru/"
+  id = 99
+  token = "YOUR GITLAB TOKEN"
+  token_obtained_at = 2023-12-07T19:55:23Z
+  token_expires_at = 0001-01-01T00:00:00Z
+  executor = "docker"
+  [runners.docker]
+    tls_verify = false
+    image = "alpine:latest"
+    privileged = true
+    disable_entrypoint_overwrite = false
+    volumes = ["/cache"]
+    shm_size = 0
+    network_mtu = 0
+    memory = "512m"
+    memory_swap = "512m"
+    memory_reservation = "265m"
+    oom_kill_disable = false
+    cpuset_cpus = "0,8"
+    cpus = "2"
+    userns_mode = "host"
+    cap_add = ["NET_ADMIN"]
+    cap_drop = ["DAC_OVERRIDE"]
+    disable_cache = false
+
+
+
+[[runners]]
+  name = "docker-runner"
+  url = "https://gitlab.pflb.ru/"
+  id = 99
+  token = "glrt-trP2-BGrzFXwadtkAm48"
+  token_obtained_at = 2023-12-07T20:02:50Z
+  token_expires_at = 0001-01-01T00:00:00Z
+  executor = "docker"
+  [runners.cache]
+    MaxUploadedArchiveSize = 0
