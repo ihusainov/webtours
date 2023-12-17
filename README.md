@@ -7,25 +7,39 @@ Web Tours
 
 
 
-Запуск в docker готового образа
+Запуск jenkins в docker готового образа
 ------
 ```
-У вас должен быть установлен docker и ваш пользователь должен входить в группу docker
-$ sudo docker pull ihusainov/webtours:v2
-$ sudo docker run --rm --name webtours -p 8085:80 -d ihusainov/webtours:v2
-$ http://127.0.0.1:8085/WebTours
+docker run -d -n "jenkins" -v jenkins_home:/var/jenkins_home -p 8080:8080 -p 50000:50000 --restart=on-failure jenkins/jenkins:2.435-jdk17
+http://your_ip:8080
 ```
 
-Запуск в docker для самостоятельной сборки образа
+Тестовый pipeline в jenkins для сборки webtours
 ------
 ```
-$ git clone https://github.com/ihusainov/webtours.git
-$ cd webtours
+pipeline {
+    agent { label('webtours')}
 
-Отредактировать файл Dockerfile с необходимыми изменениями но можно ничего не менять.
-
-$ sudo docker build -t webtours:v1 .
-$ sudo docker run --rm --name webtours -p 8085:80 -d webtours:v1
+    stages {
+        stage('Hello') {
+            steps {
+                echo 'docker version'
+            }
+        }
+        stage('Checkout'){
+            steps{
+                git branch: 'fix-deploy-jenkins',
+                url: 'https://gitlab.pflb.ru/pub/webtours.git'
+                }
+            }
+        stage('Build'){
+            steps{
+                sh 'docker build -t webtours:v1 .'
+                sh 'docker run --rm --name webtours -p 8085:80 -d webtours:v1'
+            }
+        }
+    }
+}
 $ http://127.0.0.1:8085/WebTours
 ```
 
