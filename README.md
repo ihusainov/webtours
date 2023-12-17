@@ -29,7 +29,7 @@ pipeline {
         stage('Checkout'){
             steps{
                 git branch: 'fix-deploy-jenkins',
-                url: 'https://gitlab.pflb.ru/pub/webtours.git'
+                url: 'https://github.com/ihusainov/webtours.git'
                 }
             }
         stage('Build'){
@@ -40,7 +40,7 @@ pipeline {
         }
     }
 }
-$ http://127.0.0.1:8085/WebTours
+http://your_ip:8085/WebTours
 ```
 
 
